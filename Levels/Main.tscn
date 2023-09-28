@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://rvi466t0k3s5"]
 
-[ext_resource type="PackedScene" uid="uid://h4v0wtkvi2ol" path="res://Prefabs/bush.tscn" id="1_4wbwg"]
-[ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Player/player.tscn" id="2_g364m"]
-[ext_resource type="Texture2D" uid="uid://e2arj0jk3t7r" path="res://World/DirtTileset.png" id="3_icgru"]
+[ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Player/player.tscn" id="1_1d5fc"]
+[ext_resource type="PackedScene" uid="uid://h4v0wtkvi2ol" path="res://Prefabs/bush.tscn" id="2_4kpvr"]
+[ext_resource type="Texture2D" uid="uid://e2arj0jk3t7r" path="res://World/DirtTileset.png" id="3_0kdow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43nq7"]
 size = Vector2(329, 20)
@@ -13,22 +13,22 @@ size = Vector2(20, 195)
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("2_g364m")]
+[node name="Player" parent="." instance=ExtResource("1_1d5fc")]
 position = Vector2(100, 86)
 
-[node name="Bush" parent="." instance=ExtResource("1_4wbwg")]
+[node name="Bush" parent="." instance=ExtResource("2_4kpvr")]
 position = Vector2(35, 31)
 
-[node name="Bush2" parent="." instance=ExtResource("1_4wbwg")]
+[node name="Bush2" parent="." instance=ExtResource("2_4kpvr")]
 position = Vector2(45, 136)
 
-[node name="Bush3" parent="." instance=ExtResource("1_4wbwg")]
+[node name="Bush3" parent="." instance=ExtResource("2_4kpvr")]
 position = Vector2(267, 67)
 
-[node name="Bush4" parent="." instance=ExtResource("1_4wbwg")]
+[node name="Bush4" parent="." instance=ExtResource("2_4kpvr")]
 position = Vector2(158, 47)
 
-[node name="Bush5" parent="." instance=ExtResource("1_4wbwg")]
+[node name="Bush5" parent="." instance=ExtResource("2_4kpvr")]
 position = Vector2(168, 142)
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -55,32 +55,32 @@ shape = SubResource("RectangleShape2D_tbsv4")
 
 [node name="DirtTileset" type="Sprite2D" parent="."]
 position = Vector2(96, 127)
-texture = ExtResource("3_icgru")
+texture = ExtResource("3_0kdow")
 
 [node name="DirtTileset2" type="Sprite2D" parent="."]
 position = Vector2(145, 80)
-texture = ExtResource("3_icgru")
+texture = ExtResource("3_0kdow")
 
 [node name="DirtTileset3" type="Sprite2D" parent="."]
 position = Vector2(96, 46)
-texture = ExtResource("3_icgru")
+texture = ExtResource("3_0kdow")
 
 [node name="DirtTileset4" type="Sprite2D" parent="."]
 position = Vector2(241, 45)
-texture = ExtResource("3_icgru")
+texture = ExtResource("3_0kdow")
 
 [node name="DirtTileset5" type="Sprite2D" parent="."]
 position = Vector2(273, 112)
-texture = ExtResource("3_icgru")
+texture = ExtResource("3_0kdow")
 
 [node name="DirtTileset6" type="Sprite2D" parent="."]
 position = Vector2(239, 161)
-texture = ExtResource("3_icgru")
+texture = ExtResource("3_0kdow")
 
 [node name="DirtTileset7" type="Sprite2D" parent="."]
 position = Vector2(77, 162)
-texture = ExtResource("3_icgru")
+texture = ExtResource("3_0kdow")
 
 [node name="DirtTileset8" type="Sprite2D" parent="."]
 position = Vector2(27, 86)
-texture = ExtResource("3_icgru")
+texture = ExtResource("3_0kdow")

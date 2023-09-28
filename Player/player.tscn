@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://tv1b4ak6j5vt"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_fxage"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_vfkbn"]
 [ext_resource type="Texture2D" uid="uid://b6fkqhska0ts1" path="res://Player/Player.png" id="2_3nn3u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0jgx1"]
@@ -171,7 +171,7 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_fxage")
+script = ExtResource("1_vfkbn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
