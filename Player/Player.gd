@@ -10,49 +10,40 @@ enum State {Idle, Move, Attack}
 var state     = State.Idle
 var direction = Direction.Left
 
+# Changing the state can be dissallowed. For example we must wait until an attack finish
+# until we can do other things again, like movement, or attacking again.
+func state_change_allowed() -> bool:
+    if self.state == State.Attack:
+        if anim.is_playing():
+            return false
+    return true
+
 func _physics_process(_delta):
     # Get input information
-    var is_attack = Input.is_action_pressed("player_attack")
-    var dir       = Input.get_vector("player_left", "player_right", "player_up", "player_down")
+    var is_attack    : bool    = Input.is_action_pressed("player_attack")
+    var input_vector : Vector2 = Input.get_vector("player_left", "player_right", "player_up", "player_down")
     
-    # Set State
-    if self.state == State.Attack:
-        if not anim.is_playing():
-            self.state = State.Idle
-    else:
+    if state_change_allowed():
+        # Attack has higher priority than movement
         if is_attack:
             self.state = State.Attack
-        elif dir == Vector2.ZERO:
-            self.state = State.Idle
+        # Check Movement
         else:
-            self.state = State.Move
-            self.direction = Direction.main_direction(dir)
-        
+            match Direction.from_vector2(input_vector):
+                Direction.Center: 
+                    self.state = State.Idle
+                var d:
+                    self.state     = State.Move
+                    self.direction = d
     
     # Process State
+    var dir : String = Direction.string(self.direction)
     match state:
-        State.Attack:
-            # Play Animation
-            match self.direction:
-                Direction.Up:    anim.play("AttackUp")
-                Direction.Right: anim.play("AttackRight")
-                Direction.Down:  anim.play("AttackDown")
-                Direction.Left:  anim.play("AttackLeft")
-        State.Idle:
-            # Play Animation
-            match self.direction:
-                Direction.Up:    anim.play("IdleUp")
-                Direction.Right: anim.play("IdleRight")
-                Direction.Down:  anim.play("IdleDown")
-                Direction.Left:  anim.play("IdleLeft")
+        State.Attack: anim.play("Attack" + dir)
+        State.Idle:   anim.play("Idle" + dir)
         State.Move:
             # Move Character
-            self.velocity = dir * SPEED if dir else Vector2.ZERO
+            self.velocity = input_vector * SPEED
             self.move_and_slide()
-
             # Play Animation
-            match self.direction:
-                Direction.Up:    anim.play("Up")
-                Direction.Right: anim.play("Right")
-                Direction.Down:  anim.play("Down")
-                Direction.Left:  anim.play("Left")
+            anim.play(dir)
