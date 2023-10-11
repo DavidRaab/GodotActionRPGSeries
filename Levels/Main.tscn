@@ -40,7 +40,7 @@ layer_0/tile_data = PackedInt32Array(196595, 393216, 3, 196596, 327680, 3, 13105
 y_sort_enabled = true
 
 [node name="Player" parent="Foreground" instance=ExtResource("1_1d5fc")]
-position = Vector2(35, 102)
+position = Vector2(74, 91)
 
 [node name="Bush" parent="Foreground" instance=ExtResource("2_4kpvr")]
 position = Vector2(20, 31)

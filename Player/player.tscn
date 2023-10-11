@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://tv1b4ak6j5vt"]
+[gd_scene load_steps=32 format=3 uid="uid://tv1b4ak6j5vt"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_vfkbn"]
 [ext_resource type="Texture2D" uid="uid://b6fkqhska0ts1" path="res://Player/Player.png" id="2_3nn3u"]
@@ -155,8 +155,77 @@ tracks/0/keys = {
 "values": [6, 7, 8, 9, 10, 11]
 }
 
+[sub_resource type="Animation" id="Animation_4hy5s"]
+resource_name = "AttackRight"
+length = 0.4
+step = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27]
+}
+
+[sub_resource type="Animation" id="Animation_x2sga"]
+resource_name = "AttackUp"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31]
+}
+
+[sub_resource type="Animation" id="Animation_5s8p8"]
+resource_name = "AttackLeft"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35]
+}
+
+[sub_resource type="Animation" id="Animation_a667u"]
+resource_name = "AttackDown"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ok0s7"]
 _data = {
+"AttackDown": SubResource("Animation_a667u"),
+"AttackLeft": SubResource("Animation_5s8p8"),
+"AttackRight": SubResource("Animation_4hy5s"),
+"AttackUp": SubResource("Animation_x2sga"),
 "Down": SubResource("Animation_nyxp0"),
 "IdleDown": SubResource("Animation_bebcw"),
 "IdleLeft": SubResource("Animation_mjmcq"),
@@ -229,7 +298,7 @@ states/Idle/position = Vector2(390, 100)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_28i3m")
 states/Run/position = Vector2(636, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_m6ee5"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_4af66"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_l3lmf")]
-graph_offset = Vector2(-38, -74)
+graph_offset = Vector2(-5, -12)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
