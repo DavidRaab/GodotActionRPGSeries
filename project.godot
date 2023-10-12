@@ -15,6 +15,10 @@ run/main_scene="res://Levels/Main.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/unused_parameter=0
+
 [display]
 
 window/size/viewport_width=320
@@ -63,6 +67,14 @@ player_attack={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Statics"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="PlayerAttack"
+2d_physics/layer_4="EnemyAttack"
+2d_physics/layer_5="DamageReceiver"
 
 [rendering]
 
