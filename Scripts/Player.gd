@@ -20,7 +20,7 @@ func state_change_allowed() -> bool:
 
 func _physics_process(_delta):
     # Get input information
-    var is_attack    : bool    = Input.is_action_pressed("player_attack")
+    var is_attack    : bool    = Input.is_action_just_pressed("player_attack")
     var input_vector : Vector2 = Input.get_vector("player_left", "player_right", "player_up", "player_down")
     
     if state_change_allowed():
