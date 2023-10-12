@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://rvi466t0k3s5"]
+[gd_scene load_steps=10 format=3 uid="uid://rvi466t0k3s5"]
 
-[ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Player/player.tscn" id="1_1d5fc"]
+[ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Prefabs/player.tscn" id="1_1d5fc"]
 [ext_resource type="Texture2D" uid="uid://0845tkewi5jo" path="res://World/GrassBackground.png" id="1_5vwwv"]
-[ext_resource type="Script" path="res://Levels/Main.gd" id="1_27ocl"]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_yfbow"]
 [ext_resource type="PackedScene" uid="uid://h4v0wtkvi2ol" path="res://Prefabs/bush.tscn" id="2_4kpvr"]
 [ext_resource type="TileSet" uid="uid://cyi84hojs5geu" path="res://TileSets/Dirt.tres" id="5_kcjnb"]
 [ext_resource type="TileSet" uid="uid://oqtu4dtnhrbe" path="res://TileSets/Cliff.tres" id="6_ittj3"]
+[ext_resource type="PackedScene" uid="uid://dpgvq3khht8ys" path="res://Prefabs/grass.tscn" id="7_sos5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43nq7"]
 size = Vector2(329, 20)
@@ -15,7 +16,7 @@ size = Vector2(20, 195)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_27ocl")
+script = ExtResource("1_yfbow")
 metadata/_edit_vertical_guides_ = [-27.0]
 metadata/_edit_horizontal_guides_ = [-67.0]
 
@@ -42,22 +43,6 @@ y_sort_enabled = true
 [node name="Player" parent="Foreground" instance=ExtResource("1_1d5fc")]
 position = Vector2(74, 91)
 
-[node name="Bush" parent="Foreground" instance=ExtResource("2_4kpvr")]
-position = Vector2(20, 31)
-
-[node name="Bush2" parent="Foreground" instance=ExtResource("2_4kpvr")]
-position = Vector2(21, 118)
-
-[node name="Bush3" parent="Foreground" instance=ExtResource("2_4kpvr")]
-z_index = 1
-position = Vector2(273, 76)
-
-[node name="Bush4" parent="Foreground" instance=ExtResource("2_4kpvr")]
-position = Vector2(142, 31)
-
-[node name="Bush5" parent="Foreground" instance=ExtResource("2_4kpvr")]
-position = Vector2(193, 124)
-
 [node name="Line2D" type="Line2D" parent="Foreground"]
 points = PackedVector2Array(319, 1, 319, 181, 1, 181, 1, 2, 319, 2)
 
@@ -78,3 +63,36 @@ shape = SubResource("RectangleShape2D_tbsv4")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Foreground/Line2D/StaticBody2D"]
 position = Vector2(325, 86)
 shape = SubResource("RectangleShape2D_tbsv4")
+
+[node name="Bushes" type="Node2D" parent="Foreground"]
+y_sort_enabled = true
+
+[node name="Bush" parent="Foreground/Bushes" instance=ExtResource("2_4kpvr")]
+position = Vector2(20, 31)
+
+[node name="Bush2" parent="Foreground/Bushes" instance=ExtResource("2_4kpvr")]
+position = Vector2(21, 118)
+
+[node name="Bush3" parent="Foreground/Bushes" instance=ExtResource("2_4kpvr")]
+z_index = 1
+position = Vector2(273, 76)
+
+[node name="Bush4" parent="Foreground/Bushes" instance=ExtResource("2_4kpvr")]
+position = Vector2(142, 31)
+
+[node name="Bush5" parent="Foreground/Bushes" instance=ExtResource("2_4kpvr")]
+position = Vector2(193, 124)
+
+[node name="Grasses" type="Node2D" parent="Foreground"]
+
+[node name="Grass" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(48, 112)
+
+[node name="Grass2" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(64, 112)
+
+[node name="Grass3" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(80, 112)
+
+[node name="Grass4" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(96, 112)
