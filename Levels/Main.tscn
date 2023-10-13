@@ -88,6 +88,33 @@ position = Vector2(193, 124)
 [node name="Grass" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
 position = Vector2(48, 112)
 
+[node name="Grass5" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(64, 16)
+
+[node name="Grass6" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(80, 16)
+
+[node name="Grass7" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(160, 80)
+
+[node name="Grass8" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(176, 80)
+
+[node name="Grass9" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(192, 80)
+
+[node name="Grass10" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(208, 80)
+
+[node name="Grass11" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(240, 64)
+
+[node name="Grass12" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(224, 144)
+
+[node name="Grass13" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
+position = Vector2(176, 128)
+
 [node name="Grass2" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
 position = Vector2(64, 112)
 

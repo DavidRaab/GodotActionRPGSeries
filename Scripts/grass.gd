@@ -10,13 +10,10 @@ func destroy_me():
     self.queue_free()
 
 func _on_area_2d_area_entered(_area):
-    print("Area Entered")
     destroy_me()
 
 func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-    print("Shape Entered")
     destroy_me()
 
 func _on_area_2d_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-    print("Body Shape Entered")
     destroy_me()

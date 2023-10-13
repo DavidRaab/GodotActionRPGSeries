@@ -8,7 +8,7 @@ enum State {Idle, Move, Attack}
 
 # State of the character
 var state     = State.Idle
-var direction = Direction.Left
+var direction = Direction.Right
 
 # Changing the state can be dissallowed. For example we must wait until an attack finish
 # until we can do other things again, like movement, or attacking again.
