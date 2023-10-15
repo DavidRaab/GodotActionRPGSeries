@@ -20,6 +20,15 @@ static func from_vector2(vec:Vector2) -> Direction.Type:
         else:
             return Down if y >= 0 else Up
 
+static func to_vector2(direction:Direction.Type) -> Vector2:
+    match direction:
+        Center: return Vector2.ZERO
+        Up:     return Vector2.UP
+        Right:  return Vector2.RIGHT
+        Down:   return Vector2.DOWN
+        Left:   return Vector2.LEFT
+        _:      return Vector2.ZERO
+
 static func string(direction:Direction.Type) -> String:
     match direction:
         Center: return "Center"

@@ -4,7 +4,7 @@ const SPEED = 100.0
 @onready var anim : AnimationPlayer = self.get_node("AnimationPlayer")
 
 # Character state types
-enum State {Idle, Move, Attack}
+enum State {Idle, Move, Attack, Roll}
 
 # State of the character
 var state     = State.Idle
@@ -16,18 +16,23 @@ func state_change_allowed() -> bool:
     if self.state == State.Attack:
         if anim.is_playing():
             return false
+    if self.state == State.Roll:
+        if anim.is_playing():
+            return false
     return true
 
 func _physics_process(_delta):
     # Get input information
     var is_attack    : bool    = Input.is_action_just_pressed("player_attack")
+    var is_roll      : bool    = Input.is_action_just_pressed("player_roll")
     var input_vector : Vector2 = Input.get_vector("player_left", "player_right", "player_up", "player_down")
     
+    # Set the State
     if state_change_allowed():
-        # Attack has higher priority than movement
-        if is_attack:
-            self.state = State.Attack
-        # Check Movement
+        # Attack/Roll has higher priority than movement
+        if is_attack: self.state = State.Attack
+        elif is_roll: self.state = State.Roll
+        # No Action; Check Movement
         else:
             match Direction.from_vector2(input_vector):
                 Direction.Center: 
@@ -41,6 +46,10 @@ func _physics_process(_delta):
     match state:
         State.Attack: anim.play("Attack" + dir)
         State.Idle:   anim.play("Idle" + dir)
+        State.Roll:   
+            self.velocity = Direction.to_vector2(direction) * SPEED
+            self.move_and_slide()
+            anim.play("Roll" + dir)
         State.Move:
             # Move Character
             self.velocity = input_vector * SPEED
