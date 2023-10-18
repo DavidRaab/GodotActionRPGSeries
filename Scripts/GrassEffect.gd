@@ -1,7 +1,8 @@
-extends AnimatedSprite2D
+extends Node2D
 
 func _ready():
-    self.play("default")
-
-func _on_animation_finished():
-    queue_free()
+    var anim = $AnimatedSprite2D
+    anim.connect("animation_finished", func():
+        self.queue_free()
+    )
+    anim.play("default")

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var deathEffect = preload("res://Prefabs/bat_death_effect.tscn")
+var deathEffect : PackedScene = preload("res://Prefabs/bat_death_effect.tscn")
 
 @onready var collision :CollisionShape2D = $Hitbox/CollisionShape2D
 @onready var health    :HealthComponent  = $HealthComponent
