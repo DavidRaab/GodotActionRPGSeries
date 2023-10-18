@@ -63,7 +63,7 @@ script = ExtResource("1_kk1xu")
 [node name="PhysicCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4dhlu")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="BatFlying" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_sllsl")
 autoplay = "default"
@@ -76,7 +76,7 @@ collision_layer = 32
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -13)
+position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_4mjok")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_6q3r3")]

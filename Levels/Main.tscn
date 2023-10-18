@@ -43,7 +43,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Foreground" instance=ExtResource("1_1d5fc")]
 position = Vector2(74, 91)
-SwordDamage = 3
+SwordDamage = 2
 
 [node name="Line2D" type="Line2D" parent="Foreground"]
 points = PackedVector2Array(319, 1, 319, 181, 1, 181, 1, 2, 319, 2)
@@ -126,11 +126,43 @@ position = Vector2(80, 112)
 [node name="Grass4" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
 position = Vector2(96, 112)
 
-[node name="Bat" parent="." instance=ExtResource("8_63f2j")]
+[node name="Bat" parent="Foreground" instance=ExtResource("8_63f2j")]
 position = Vector2(48, 104)
 
-[node name="HealthComponent" parent="Bat" index="4"]
+[node name="HealthComponent" parent="Foreground/Bat" index="4"]
 _health = 3
 _max_health = 3
 
-[editable path="Bat"]
+[node name="Bat2" parent="Foreground" instance=ExtResource("8_63f2j")]
+position = Vector2(104, 72)
+
+[node name="HealthComponent" parent="Foreground/Bat2" index="4"]
+_health = 3
+_max_health = 3
+
+[node name="Bat3" parent="Foreground" instance=ExtResource("8_63f2j")]
+position = Vector2(200, 56)
+
+[node name="HealthComponent" parent="Foreground/Bat3" index="4"]
+_health = 3
+_max_health = 3
+
+[node name="Bat4" parent="Foreground" instance=ExtResource("8_63f2j")]
+position = Vector2(232, 104)
+
+[node name="HealthComponent" parent="Foreground/Bat4" index="4"]
+_health = 3
+_max_health = 3
+
+[node name="Bat5" parent="Foreground" instance=ExtResource("8_63f2j")]
+position = Vector2(136, 136)
+
+[node name="HealthComponent" parent="Foreground/Bat5" index="4"]
+_health = 3
+_max_health = 3
+
+[editable path="Foreground/Bat"]
+[editable path="Foreground/Bat2"]
+[editable path="Foreground/Bat3"]
+[editable path="Foreground/Bat4"]
+[editable path="Foreground/Bat5"]
