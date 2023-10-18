@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://rvi466t0k3s5"]
+[gd_scene load_steps=11 format=3 uid="uid://rvi466t0k3s5"]
 
 [ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Prefabs/player.tscn" id="1_1d5fc"]
 [ext_resource type="Texture2D" uid="uid://0845tkewi5jo" path="res://World/GrassBackground.png" id="1_5vwwv"]
@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://cyi84hojs5geu" path="res://TileSets/Dirt.tres" id="5_kcjnb"]
 [ext_resource type="TileSet" uid="uid://oqtu4dtnhrbe" path="res://TileSets/Cliff.tres" id="6_ittj3"]
 [ext_resource type="PackedScene" uid="uid://dpgvq3khht8ys" path="res://Prefabs/grass.tscn" id="7_sos5o"]
+[ext_resource type="PackedScene" uid="uid://d1cxan1x0bgah" path="res://Prefabs/Bat.tscn" id="8_63f2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43nq7"]
 size = Vector2(329, 20)
@@ -42,6 +43,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Foreground" instance=ExtResource("1_1d5fc")]
 position = Vector2(74, 91)
+SwordDamage = 3
 
 [node name="Line2D" type="Line2D" parent="Foreground"]
 points = PackedVector2Array(319, 1, 319, 181, 1, 181, 1, 2, 319, 2)
@@ -123,3 +125,12 @@ position = Vector2(80, 112)
 
 [node name="Grass4" parent="Foreground/Grasses" instance=ExtResource("7_sos5o")]
 position = Vector2(96, 112)
+
+[node name="Bat" parent="." instance=ExtResource("8_63f2j")]
+position = Vector2(48, 104)
+
+[node name="HealthComponent" parent="Bat" index="4"]
+_health = 3
+_max_health = 3
+
+[editable path="Bat"]

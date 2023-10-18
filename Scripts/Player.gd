@@ -1,6 +1,9 @@
 extends CharacterBody2D
 const SPEED = 100.0
 
+# Editor Configuration
+@export var SwordDamage : int = 1
+
 @onready var anim : AnimationPlayer = self.get_node("AnimationPlayer")
 
 # Character state types
@@ -9,6 +12,9 @@ enum State {Idle, Move, Attack, Roll}
 # State of the character
 var state     = State.Idle
 var direction = Direction.Right
+
+func _ready():
+    $Sword/AreaDamage.damage = self.SwordDamage
 
 # Changing the state can be dissallowed. For example we must wait until an attack finish
 # until we can do other things again, like movement, or attacking again.

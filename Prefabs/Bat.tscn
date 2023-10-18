@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://d1cxan1x0bgah"]
+
+[ext_resource type="Script" path="res://Prefabs/Bat.gd" id="1_kk1xu"]
+[ext_resource type="Texture2D" uid="uid://b22ektsjvot2y" path="res://Enemies/Bat.png" id="1_qlvrl"]
+[ext_resource type="Texture2D" uid="uid://cn6e862lcrdkf" path="res://Shadows/SmallShadow.png" id="2_qy0j8"]
+[ext_resource type="PackedScene" uid="uid://fuqi2a1j12ma" path="res://Components/health_component.tscn" id="4_6q3r3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dhlu"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x38eb"]
+atlas = ExtResource("1_qlvrl")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8d6a"]
+atlas = ExtResource("1_qlvrl")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igle1"]
+atlas = ExtResource("1_qlvrl")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr247"]
+atlas = ExtResource("1_qlvrl")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olx8h"]
+atlas = ExtResource("1_qlvrl")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sllsl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x38eb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8d6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igle1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr247")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olx8h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4mjok"]
+radius = 8.0
+height = 20.0
+
+[node name="Bat" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 49
+script = ExtResource("1_kk1xu")
+
+[node name="PhysicCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4dhlu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_sllsl")
+autoplay = "default"
+
+[node name="SmallShadow" type="Sprite2D" parent="."]
+texture = ExtResource("2_qy0j8")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_4mjok")
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_6q3r3")]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
