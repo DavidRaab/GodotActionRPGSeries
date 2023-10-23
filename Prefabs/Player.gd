@@ -4,8 +4,8 @@ const SPEED = 100.0
 # Editor Configuration
 @export var SwordDamage : int = 1
 
-@onready var anim : AnimationPlayer       = $AnimationPlayer
-@onready var health : HealthComponent     = $HealthComponent
+@onready var anim      : AnimationPlayer  = $AnimationPlayer
+@onready var health    : HealthComponent  = $HealthComponent
 @onready var healthBar : ProgressBar      = $HealthBar
 @onready var collision : CollisionShape2D = $PlayerCollision
 
@@ -71,7 +71,9 @@ func _physics_process(_delta):
             anim.play(dir)
 
 func take_damage(value:int) -> bool:
+    # In Roll State player cannot be damaged
     if state == State.Roll: return false
+    
     health.subtract_health(value)
     return true
     

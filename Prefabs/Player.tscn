@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://tv1b4ak6j5vt"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_gudrx"]
+[ext_resource type="Script" path="res://Prefabs/Player.gd" id="1_q62ec"]
 [ext_resource type="Texture2D" uid="uid://b6fkqhska0ts1" path="res://Player/Player.png" id="2_3nn3u"]
 [ext_resource type="Script" path="res://Scripts/HealthComponent.gd" id="2_kihcb"]
 [ext_resource type="Script" path="res://Prefabs/AreaDamage.gd" id="3_hqlit"]
@@ -420,7 +420,7 @@ height = 28.0
 collision_layer = 2
 collision_mask = 9
 motion_mode = 1
-script = ExtResource("1_gudrx")
+script = ExtResource("1_q62ec")
 SwordDamage = 3
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]

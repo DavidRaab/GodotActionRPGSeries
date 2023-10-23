@@ -41,7 +41,7 @@ func _ready():
         current_state = State.Chase
         chase_body    = body
     )
-    # when player out of reshape_index:ach go idle
+    # when player out of reach go idle
     detection.player_exited.connect( func(a,body,b,c):
         current_state = State.Idle
         chase_body    = null

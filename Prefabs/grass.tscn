@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpgvq3khht8ys"]
 
-[ext_resource type="Script" path="res://Scripts/grass.gd" id="1_221kh"]
+[ext_resource type="Script" path="res://Prefabs/grass.gd" id="1_221kh"]
 [ext_resource type="Texture2D" uid="uid://v34ahm4qgcrm" path="res://World/Grass.png" id="1_853ci"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_luep8"]

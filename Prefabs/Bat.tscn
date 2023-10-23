@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b22ektsjvot2y" path="res://Enemies/Bat.png" id="1_qlvrl"]
 [ext_resource type="Texture2D" uid="uid://cn6e862lcrdkf" path="res://Shadows/SmallShadow.png" id="2_qy0j8"]
 [ext_resource type="PackedScene" uid="uid://fuqi2a1j12ma" path="res://Components/health_component.tscn" id="4_6q3r3"]
-[ext_resource type="Script" path="res://PlayerDetection.gd" id="5_p8f7j"]
+[ext_resource type="Script" path="res://Scripts/PlayerDetection.gd" id="5_8ijr1"]
 [ext_resource type="Script" path="res://Prefabs/AreaDamage.gd" id="6_38ey5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4dhlu"]
@@ -93,7 +93,7 @@ shape = SubResource("CapsuleShape2D_4mjok")
 [node name="PlayerDetection" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("5_p8f7j")
+script = ExtResource("5_8ijr1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource("CircleShape2D_ni8tx")

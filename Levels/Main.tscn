@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://rvi466t0k3s5"]
 
-[ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Prefabs/player.tscn" id="1_1d5fc"]
+[ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Prefabs/Player.tscn" id="1_1d5fc"]
 [ext_resource type="Texture2D" uid="uid://0845tkewi5jo" path="res://World/GrassBackground.png" id="1_5vwwv"]
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_yfbow"]
 [ext_resource type="PackedScene" uid="uid://h4v0wtkvi2ol" path="res://Prefabs/bush.tscn" id="2_4kpvr"]
