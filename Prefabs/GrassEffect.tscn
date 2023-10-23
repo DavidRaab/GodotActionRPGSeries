@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dbdxocjob3lgi"]
 
 [ext_resource type="Texture2D" uid="uid://biqe4cfc14p75" path="res://Effects/GrassEffect.png" id="1_fk876"]
-[ext_resource type="Script" path="res://Scripts/GrassEffect.gd" id="2_8f0uj"]
+[ext_resource type="Script" path="res://Scripts/AutoDestroyAnimatedSprite.gd" id="1_i2si7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mny2t"]
 atlas = ExtResource("1_fk876")
@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [node name="GrassEffect" type="Node2D"]
-script = ExtResource("2_8f0uj")
+script = ExtResource("1_i2si7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 5)

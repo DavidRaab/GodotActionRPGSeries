@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://d1cxan1x0bgah"]
+[gd_scene load_steps=17 format=3 uid="uid://d1cxan1x0bgah"]
 
 [ext_resource type="Script" path="res://Prefabs/Bat.gd" id="1_kk1xu"]
 [ext_resource type="Texture2D" uid="uid://b22ektsjvot2y" path="res://Enemies/Bat.png" id="1_qlvrl"]
 [ext_resource type="Texture2D" uid="uid://cn6e862lcrdkf" path="res://Shadows/SmallShadow.png" id="2_qy0j8"]
 [ext_resource type="PackedScene" uid="uid://fuqi2a1j12ma" path="res://Components/health_component.tscn" id="4_6q3r3"]
 [ext_resource type="Script" path="res://PlayerDetection.gd" id="5_p8f7j"]
+[ext_resource type="Script" path="res://Prefabs/AreaDamage.gd" id="6_38ey5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4dhlu"]
 radius = 5.0
@@ -59,11 +60,16 @@ height = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ni8tx"]
 radius = 41.1096
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_laly5"]
+radius = 5.0
+
 [node name="Bat" type="CharacterBody2D"]
 collision_layer = 32
 collision_mask = 49
 script = ExtResource("1_kk1xu")
 chase_speed = 30
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_6q3r3")]
 
 [node name="PhysicCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4dhlu")
@@ -84,8 +90,6 @@ collision_mask = 4
 position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_4mjok")
 
-[node name="HealthComponent" parent="." instance=ExtResource("4_6q3r3")]
-
 [node name="PlayerDetection" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
@@ -94,5 +98,14 @@ script = ExtResource("5_p8f7j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource("CircleShape2D_ni8tx")
 debug_color = Color(0.788235, 0.360784, 0.607843, 0.141176)
+
+[node name="PlayerAttackArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("6_38ey5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackArea"]
+shape = SubResource("CircleShape2D_laly5")
+debug_color = Color(0.768627, 0.447059, 0.0784314, 0.419608)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

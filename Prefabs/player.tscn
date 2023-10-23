@@ -1,11 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://tv1b4ak6j5vt"]
+[gd_scene load_steps=25 format=3 uid="uid://tv1b4ak6j5vt"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_gudrx"]
 [ext_resource type="Texture2D" uid="uid://b6fkqhska0ts1" path="res://Player/Player.png" id="2_3nn3u"]
+[ext_resource type="Script" path="res://Scripts/HealthComponent.gd" id="2_kihcb"]
 [ext_resource type="Script" path="res://Prefabs/AreaDamage.gd" id="3_hqlit"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0jgx1"]
-radius = 4.0
+radius = 5.0
 height = 10.0
 
 [sub_resource type="Animation" id="Animation_a667u"]
@@ -266,7 +267,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_kxoys"]
@@ -413,7 +414,6 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oe23s"]
-radius = 10.0
 height = 28.0
 
 [node name="Player" type="CharacterBody2D"]
@@ -423,18 +423,24 @@ motion_mode = 1
 script = ExtResource("1_gudrx")
 SwordDamage = 3
 
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0jgx1")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_kihcb")
+_health = 4
+_max_health = 4
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -12)
 texture = ExtResource("2_3nn3u")
 hframes = 60
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 1
-position = Vector2(1, -3)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_0jgx1")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_ok0s7")
 }
@@ -453,3 +459,14 @@ position = Vector2(17, 0)
 rotation = 3.14159
 shape = SubResource("CapsuleShape2D_oe23s")
 disabled = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -9.0
+offset_top = -28.0
+offset_right = 8.0
+offset_bottom = -24.0
+step = 1.0
+value = 100.0
+rounded = true
+show_percentage = false

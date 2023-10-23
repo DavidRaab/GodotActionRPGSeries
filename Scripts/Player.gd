@@ -4,7 +4,10 @@ const SPEED = 100.0
 # Editor Configuration
 @export var SwordDamage : int = 1
 
-@onready var anim : AnimationPlayer = self.get_node("AnimationPlayer")
+@onready var anim : AnimationPlayer       = $AnimationPlayer
+@onready var health : HealthComponent     = $HealthComponent
+@onready var healthBar : ProgressBar      = $HealthBar
+@onready var collision : CollisionShape2D = $PlayerCollision
 
 # Character state types
 enum State {Idle, Move, Attack, Roll}
@@ -15,6 +18,10 @@ var direction = Direction.Right
 
 func _ready():
     $Sword/AreaDamage.damage = self.SwordDamage
+    health.min_health_reached.connect(func(): self.queue_free())
+    health.health_changed.connect(func(current,minv,maxv):
+        healthBar.value = 100.0 / (maxv-minv) * current
+    )
 
 # Changing the state can be dissallowed. For example we must wait until an attack finish
 # until we can do other things again, like movement, or attacking again.
@@ -62,3 +69,9 @@ func _physics_process(_delta):
             self.move_and_slide()
             # Play Animation
             anim.play(dir)
+
+func take_damage(value:int) -> bool:
+    if state == State.Roll: return false
+    health.subtract_health(value)
+    return true
+    
