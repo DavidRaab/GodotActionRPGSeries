@@ -8,8 +8,9 @@ extends Node
 signal min_health_reached
 signal health_changed(value:int, minimum:int, maximum:int)
 
-func get_health() -> int:
-    return _health
+func get_health()     -> int: return _health
+func get_max_health() -> int: return _max_health
+func get_min_health() -> int: return _min_health
 
 func set_health(value: int) -> void:
     var oldValue = self._health

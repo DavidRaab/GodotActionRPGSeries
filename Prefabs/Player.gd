@@ -6,7 +6,6 @@ const SPEED = 100.0
 
 @onready var anim      : AnimationPlayer  = $AnimationPlayer
 @onready var health    : HealthComponent  = $HealthComponent
-@onready var healthBar : ProgressBar      = $HealthBar
 @onready var collision : CollisionShape2D = $PlayerCollision
 
 # Character state types
@@ -19,9 +18,6 @@ var direction = Direction.Right
 func _ready():
     $Sword/AreaDamage.damage = self.SwordDamage
     health.min_health_reached.connect(func(): self.queue_free())
-    health.health_changed.connect(func(current,minv,maxv):
-        healthBar.value = 100.0 / (maxv-minv) * current
-    )
 
 # Changing the state can be dissallowed. For example we must wait until an attack finish
 # until we can do other things again, like movement, or attacking again.

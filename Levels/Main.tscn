@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://rvi466t0k3s5"]
+[gd_scene load_steps=14 format=3 uid="uid://rvi466t0k3s5"]
 
 [ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Prefabs/Player.tscn" id="1_1d5fc"]
 [ext_resource type="Texture2D" uid="uid://0845tkewi5jo" path="res://World/GrassBackground.png" id="1_5vwwv"]
@@ -8,6 +8,9 @@
 [ext_resource type="TileSet" uid="uid://oqtu4dtnhrbe" path="res://TileSets/Cliff.tres" id="6_ittj3"]
 [ext_resource type="PackedScene" uid="uid://dpgvq3khht8ys" path="res://Prefabs/grass.tscn" id="7_sos5o"]
 [ext_resource type="PackedScene" uid="uid://d1cxan1x0bgah" path="res://Prefabs/Bat.tscn" id="8_63f2j"]
+[ext_resource type="Texture2D" uid="uid://c0q0rkyh8bie6" path="res://UI/HeartUIEmpty.png" id="9_fvicf"]
+[ext_resource type="Script" path="res://Levels/Health.gd" id="9_o2i1u"]
+[ext_resource type="Texture2D" uid="uid://bmp0c2k05sde7" path="res://UI/HeartUIFull.png" id="10_kbl0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43nq7"]
 size = Vector2(329, 20)
@@ -42,6 +45,7 @@ layer_0/tile_data = PackedInt32Array(196595, 393216, 3, 196596, 327680, 3, 13105
 y_sort_enabled = true
 
 [node name="Player" parent="Foreground" instance=ExtResource("1_1d5fc")]
+unique_name_in_owner = true
 position = Vector2(74, 91)
 SwordDamage = 2
 
@@ -160,6 +164,34 @@ position = Vector2(136, 136)
 [node name="HealthComponent" parent="Foreground/Bat5" index="0"]
 _health = 3
 _max_health = 3
+
+[node name="UI" type="Control" parent="."]
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_o2i1u")
+
+[node name="Empty" type="TextureRect" parent="UI/Health"]
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 11.0
+texture = ExtResource("9_fvicf")
+stretch_mode = 1
+
+[node name="Full" type="TextureRect" parent="UI/Health"]
+layout_mode = 0
+offset_right = 15.0
+offset_bottom = 11.0
+texture = ExtResource("10_kbl0j")
+expand_mode = 1
+stretch_mode = 1
 
 [editable path="Foreground/Bat"]
 [editable path="Foreground/Bat2"]
