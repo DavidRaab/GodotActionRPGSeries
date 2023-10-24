@@ -183,6 +183,7 @@ layout_mode = 0
 offset_right = 30.0
 offset_bottom = 11.0
 texture = ExtResource("9_fvicf")
+expand_mode = 1
 stretch_mode = 1
 
 [node name="Full" type="TextureRect" parent="UI/Health"]
