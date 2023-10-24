@@ -6,7 +6,7 @@ extends Node
 @export var _min_health : int = 0
 
 signal min_health_reached
-signal health_changed
+signal health_changed(value:int, minimum:int, maximum:int)
 
 func get_health() -> int:
     return _health
