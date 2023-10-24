@@ -82,9 +82,11 @@ func _physics_process(delta):
     self.knockback = self.knockback.move_toward(Vector2.ZERO, friction * delta)
     move_and_slide()
 
+# When Bat Hitbox collide with an Attack
 func _on_hitbox_area_entered(area):
-    var direction = (collision.global_position - area.global_position).normalized()
-    self.knockback = direction * knockback_speed
-    
     if area is AreaDamage:
+        # compute attack direction for knockback
+        var direction = (collision.global_position - area.global_position).normalized()
+        self.knockback = direction * knockback_speed
+        # Apply Damage
         self.health.subtract_health(area.damage)
