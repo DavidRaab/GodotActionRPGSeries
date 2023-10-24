@@ -51,11 +51,13 @@ func _ready():
     playerAttackArea.body_shape_exited.connect( func(a,b,c,d): self.in_attack_range = false)
 
 func _physics_process(delta):
-    time_since_last_attack += delta
-    if in_attack_range and time_since_last_attack > attack_timeout:
+    # Only go in Attack State if Enemy is touching player and time since last attack is reached
+    time_since_last_attack = min(time_since_last_attack+delta, attack_timeout)
+    if in_attack_range and time_since_last_attack >= attack_timeout:
         current_state = State.Attack
         time_since_last_attack = 0.0
     
+    # Process current State
     match current_state:
         State.Idle:
             self.velocity = self.velocity.move_toward(Vector2.ZERO, friction * delta)
