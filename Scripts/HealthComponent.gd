@@ -13,17 +13,16 @@ func get_health() -> int:
 
 func set_health(value: int) -> void:
     var oldValue = self._health
-    if value > self._max_health:
-        self._health = self._max_health
-    elif value <= self._min_health:
-        self._health = self._min_health
-        self.min_health_reached.emit()
-    else:
-        self._health = value
     
-    # if current health changed
-    if oldValue != _health:
+    self._health = min(value, _max_health)
+    self._health = max(value, _min_health)
+    
+    # fire events when _health changed
+    if _health != oldValue:
         self.health_changed.emit(_health, _min_health, _max_health)
+        # when min_health is reached
+        if _health == _min_health:
+            self.min_health_reached.emit()
         
 
 func add_health(value: int) -> void:
