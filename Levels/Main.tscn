@@ -133,37 +133,17 @@ position = Vector2(96, 112)
 [node name="Bat" parent="Foreground" instance=ExtResource("8_63f2j")]
 position = Vector2(48, 104)
 
-[node name="HealthComponent" parent="Foreground/Bat" index="0"]
-_health = 3
-_max_health = 3
-
 [node name="Bat2" parent="Foreground" instance=ExtResource("8_63f2j")]
 position = Vector2(104, 72)
-
-[node name="HealthComponent" parent="Foreground/Bat2" index="0"]
-_health = 3
-_max_health = 3
 
 [node name="Bat3" parent="Foreground" instance=ExtResource("8_63f2j")]
 position = Vector2(200, 56)
 
-[node name="HealthComponent" parent="Foreground/Bat3" index="0"]
-_health = 3
-_max_health = 3
-
 [node name="Bat4" parent="Foreground" instance=ExtResource("8_63f2j")]
 position = Vector2(232, 104)
 
-[node name="HealthComponent" parent="Foreground/Bat4" index="0"]
-_health = 3
-_max_health = 3
-
 [node name="Bat5" parent="Foreground" instance=ExtResource("8_63f2j")]
 position = Vector2(136, 136)
-
-[node name="HealthComponent" parent="Foreground/Bat5" index="0"]
-_health = 3
-_max_health = 3
 
 [node name="UI" type="Control" parent="."]
 top_level = true
@@ -193,9 +173,3 @@ offset_bottom = 11.0
 texture = ExtResource("10_kbl0j")
 expand_mode = 1
 stretch_mode = 1
-
-[editable path="Foreground/Bat"]
-[editable path="Foreground/Bat2"]
-[editable path="Foreground/Bat3"]
-[editable path="Foreground/Bat4"]
-[editable path="Foreground/Bat5"]

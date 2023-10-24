@@ -60,12 +60,17 @@ func _physics_process(delta):
     # Process current State
     match current_state:
         State.Idle:
-            self.velocity = self.velocity.move_toward(Vector2.ZERO, friction * delta)
+            self.velocity  = self.velocity.move_toward(Vector2.ZERO, friction * delta)
+            self.knockback = self.velocity + knockback
+            self.knockback = self.knockback.move_toward(Vector2.ZERO, friction * delta)
+            move_and_slide()
         State.Wander:
             pass
         State.Chase:
-            var direction = self.global_position.direction_to(self.chase_body.global_position).normalized()
-            self.velocity = direction * chase_speed
+            var direction  = self.global_position.direction_to(self.chase_body.global_position).normalized()
+            self.velocity  = direction * chase_speed + knockback
+            self.knockback = self.knockback.move_toward(Vector2.ZERO, friction * delta)
+            move_and_slide()
         State.Attack:
             # Try to do damage on player
             if self.chase_body.take_damage(self.attack_damage):
@@ -74,19 +79,14 @@ func _physics_process(delta):
                     var hit = hitEffect.instantiate()
                     hit.global_position = body.global_position
                     get_parent().add_child(hit)
-            
             self.current_state = State.Chase
-        
-    # Apply knockback
-    self.velocity  = self.velocity + knockback
-    self.knockback = self.knockback.move_toward(Vector2.ZERO, friction * delta)
-    move_and_slide()
 
 # When Bat Hitbox collide with an Attack
 func _on_hitbox_area_entered(area):
     if area is AreaDamage:
         # compute attack direction for knockback
-        var direction = (collision.global_position - area.global_position).normalized()
-        self.knockback = direction * knockback_speed
+        if self.knockback == Vector2.ZERO:
+            var direction = (collision.global_position - area.global_position).normalized()
+            self.knockback = direction * knockback_speed
         # Apply Damage
         self.health.subtract_health(area.damage)

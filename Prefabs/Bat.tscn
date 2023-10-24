@@ -70,6 +70,8 @@ script = ExtResource("1_kk1xu")
 chase_speed = 30
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_6q3r3")]
+_health = 3
+_max_health = 3
 
 [node name="PhysicCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4dhlu")
