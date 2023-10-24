@@ -13,9 +13,7 @@ func get_health() -> int:
 
 func set_health(value: int) -> void:
     var oldValue = self._health
-    
-    self._health = min(value, _max_health)
-    self._health = max(value, _min_health)
+    self._health = clamp(value, _min_health, _max_health)
     
     # fire events when _health changed
     if _health != oldValue:
