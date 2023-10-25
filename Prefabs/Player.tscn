@@ -1,9 +1,9 @@
 [gd_scene load_steps=25 format=3 uid="uid://tv1b4ak6j5vt"]
 
-[ext_resource type="Script" path="res://Prefabs/Player.gd" id="1_q62ec"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/Player.gd" id="1_mkloc"]
 [ext_resource type="Texture2D" uid="uid://b6fkqhska0ts1" path="res://Player/Player.png" id="2_3nn3u"]
-[ext_resource type="Script" path="res://Scripts/HealthComponent.gd" id="2_kihcb"]
-[ext_resource type="Script" path="res://Prefabs/AreaDamage.gd" id="3_hqlit"]
+[ext_resource type="Script" path="res://Components/Scripts/HealthComponent.gd" id="2_pnplh"]
+[ext_resource type="Script" path="res://Scripts/AreaDamage.gd" id="4_hmhs7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0jgx1"]
 radius = 5.0
@@ -420,7 +420,7 @@ height = 28.0
 collision_layer = 2
 collision_mask = 9
 motion_mode = 1
-script = ExtResource("1_q62ec")
+script = ExtResource("1_mkloc")
 SwordDamage = 3
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
@@ -430,9 +430,9 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_0jgx1")
 
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("2_kihcb")
-_health = 4
-_max_health = 4
+script = ExtResource("2_pnplh")
+_health = 10
+_max_health = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -12)
@@ -451,7 +451,7 @@ position = Vector2(0, -9)
 [node name="AreaDamage" type="Area2D" parent="Sword"]
 collision_layer = 4
 collision_mask = 48
-script = ExtResource("3_hqlit")
+script = ExtResource("4_hmhs7")
 damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/AreaDamage"]

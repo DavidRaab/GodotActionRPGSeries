@@ -2,7 +2,8 @@ extends CharacterBody2D
 const SPEED = 100.0
 
 # Editor Configuration
-@export var SwordDamage : int = 1
+@export var SwordDamage   : int = 1
+@export var is_damagable : bool = true
 
 @onready var anim      : AnimationPlayer  = $AnimationPlayer
 @onready var health    : HealthComponent  = $HealthComponent
@@ -67,9 +68,12 @@ func _physics_process(_delta):
             anim.play(dir)
 
 func take_damage(value:int) -> bool:
-    # In Roll State player cannot be damaged
-    if state == State.Roll: return false
-    
-    health.subtract_health(value)
-    return true
+    if is_damagable:
+        # In Roll State player cannot be damaged
+        if state == State.Roll:
+            return false
+        health.subtract_health(value)
+        return true
+    else:
+        return false
     

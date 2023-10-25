@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://ce7np1pa4gg7b"]
 
 [ext_resource type="Texture2D" uid="uid://cvo6hlvhopyq" path="res://Effects/EnemyDeathEffect.png" id="1_lnyi2"]
-[ext_resource type="Script" path="res://Prefabs/bat_death_effect.gd" id="1_uny7f"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/bat_death_effect.gd" id="1_uny7f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pbkac"]
 atlas = ExtResource("1_lnyi2")

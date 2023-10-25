@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://d1cxan1x0bgah"]
 
-[ext_resource type="Script" path="res://Prefabs/Bat.gd" id="1_kk1xu"]
 [ext_resource type="Texture2D" uid="uid://b22ektsjvot2y" path="res://Enemies/Bat.png" id="1_qlvrl"]
+[ext_resource type="Script" path="res://Prefabs/Scripts/Bat.gd" id="1_w45mr"]
 [ext_resource type="Texture2D" uid="uid://cn6e862lcrdkf" path="res://Shadows/SmallShadow.png" id="2_qy0j8"]
 [ext_resource type="PackedScene" uid="uid://fuqi2a1j12ma" path="res://Components/health_component.tscn" id="4_6q3r3"]
 [ext_resource type="Script" path="res://Scripts/PlayerDetection.gd" id="5_8ijr1"]
-[ext_resource type="Script" path="res://Prefabs/AreaDamage.gd" id="6_38ey5"]
+[ext_resource type="Script" path="res://Scripts/AreaDamage.gd" id="6_xy8b2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4dhlu"]
 radius = 5.0
@@ -58,7 +58,7 @@ radius = 8.0
 height = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ni8tx"]
-radius = 41.1096
+radius = 64.0078
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_laly5"]
 radius = 5.0
@@ -66,7 +66,7 @@ radius = 5.0
 [node name="Bat" type="CharacterBody2D"]
 collision_layer = 32
 collision_mask = 49
-script = ExtResource("1_kk1xu")
+script = ExtResource("1_w45mr")
 chase_speed = 30
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_6q3r3")]
@@ -104,7 +104,7 @@ debug_color = Color(0.788235, 0.360784, 0.607843, 0.141176)
 [node name="PlayerAttackArea" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("6_38ey5")
+script = ExtResource("6_xy8b2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackArea"]
 shape = SubResource("CircleShape2D_laly5")
