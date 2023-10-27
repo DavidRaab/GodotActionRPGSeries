@@ -1,22 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://rvi466t0k3s5"]
+[gd_scene load_steps=12 format=3 uid="uid://rvi466t0k3s5"]
 
 [ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Prefabs/Player.tscn" id="1_1d5fc"]
-[ext_resource type="Texture2D" uid="uid://0845tkewi5jo" path="res://World/GrassBackground.png" id="1_5vwwv"]
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_yfbow"]
 [ext_resource type="PackedScene" uid="uid://h4v0wtkvi2ol" path="res://Prefabs/bush.tscn" id="2_4kpvr"]
+[ext_resource type="Texture2D" uid="uid://0845tkewi5jo" path="res://World/GrassBackground.png" id="2_biojr"]
 [ext_resource type="TileSet" uid="uid://cyi84hojs5geu" path="res://TileSets/Dirt.tres" id="5_kcjnb"]
 [ext_resource type="TileSet" uid="uid://oqtu4dtnhrbe" path="res://TileSets/Cliff.tres" id="6_ittj3"]
 [ext_resource type="PackedScene" uid="uid://dpgvq3khht8ys" path="res://Prefabs/grass.tscn" id="7_sos5o"]
 [ext_resource type="PackedScene" uid="uid://d1cxan1x0bgah" path="res://Prefabs/Bat.tscn" id="8_63f2j"]
 [ext_resource type="Texture2D" uid="uid://c0q0rkyh8bie6" path="res://UI/HeartUIEmpty.png" id="9_fvicf"]
-[ext_resource type="Script" path="res://Levels/Health.gd" id="9_o2i1u"]
+[ext_resource type="Script" path="res://Levels/UIHealth.gd" id="10_dja4r"]
 [ext_resource type="Texture2D" uid="uid://bmp0c2k05sde7" path="res://UI/HeartUIFull.png" id="10_kbl0j"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_43nq7"]
-size = Vector2(329, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbsv4"]
-size = Vector2(20, 195)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -25,9 +19,11 @@ metadata/_edit_vertical_guides_ = [-27.0]
 metadata/_edit_horizontal_guides_ = [-67.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 320.0
-offset_bottom = 180.0
-texture = ExtResource("1_5vwwv")
+offset_left = -1704.0
+offset_top = -232.0
+offset_right = 424.0
+offset_bottom = 600.0
+texture = ExtResource("2_biojr")
 stretch_mode = 1
 
 [node name="Dirt" type="TileMap" parent="."]
@@ -49,26 +45,8 @@ unique_name_in_owner = true
 position = Vector2(20, 80)
 SwordDamage = 2
 
-[node name="Line2D" type="Line2D" parent="Foreground"]
-points = PackedVector2Array(319, 1, 319, 181, 1, 181, 1, 2, 319, 2)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Foreground/Line2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Line2D/StaticBody2D"]
-position = Vector2(162, -4)
-shape = SubResource("RectangleShape2D_43nq7")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Foreground/Line2D/StaticBody2D"]
-position = Vector2(158.5, 187)
-shape = SubResource("RectangleShape2D_43nq7")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Foreground/Line2D/StaticBody2D"]
-position = Vector2(-5, 88)
-shape = SubResource("RectangleShape2D_tbsv4")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Foreground/Line2D/StaticBody2D"]
-position = Vector2(325, 86)
-shape = SubResource("RectangleShape2D_tbsv4")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Foreground/Player"]
+remote_path = NodePath("../../../Camera2D")
 
 [node name="Bushes" type="Node2D" parent="Foreground"]
 y_sort_enabled = true
@@ -145,20 +123,29 @@ position = Vector2(232, 104)
 [node name="Bat5" parent="Foreground" instance=ExtResource("8_63f2j")]
 position = Vector2(136, 136)
 
-[node name="UI" type="Control" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(20, 80)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
 top_level = true
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 48.0
 
-[node name="Health" type="Control" parent="UI"]
+[node name="Health" type="Control" parent="CanvasLayer/UI"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("9_o2i1u")
+script = ExtResource("10_dja4r")
 
-[node name="Empty" type="TextureRect" parent="UI/Health"]
+[node name="Empty" type="TextureRect" parent="CanvasLayer/UI/Health"]
 layout_mode = 0
 offset_right = 30.0
 offset_bottom = 11.0
@@ -166,7 +153,7 @@ texture = ExtResource("9_fvicf")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="Full" type="TextureRect" parent="UI/Health"]
+[node name="Full" type="TextureRect" parent="CanvasLayer/UI/Health"]
 layout_mode = 0
 offset_right = 15.0
 offset_bottom = 11.0
