@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rvi466t0k3s5"]
+[gd_scene load_steps=13 format=3 uid="uid://rvi466t0k3s5"]
 
 [ext_resource type="PackedScene" uid="uid://tv1b4ak6j5vt" path="res://Prefabs/Player.tscn" id="1_1d5fc"]
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_yfbow"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c0q0rkyh8bie6" path="res://UI/HeartUIEmpty.png" id="9_fvicf"]
 [ext_resource type="Script" path="res://Levels/UIHealth.gd" id="10_dja4r"]
 [ext_resource type="Texture2D" uid="uid://bmp0c2k05sde7" path="res://UI/HeartUIFull.png" id="10_kbl0j"]
+[ext_resource type="PackedScene" uid="uid://cj48c615qg3me" path="res://Prefabs/Tree.tscn" id="12_3fylq"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -42,7 +43,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Foreground" instance=ExtResource("1_1d5fc")]
 unique_name_in_owner = true
-position = Vector2(20, 80)
+position = Vector2(8, 88)
 SwordDamage = 2
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Foreground/Player"]
@@ -109,22 +110,22 @@ position = Vector2(80, 112)
 position = Vector2(96, 112)
 
 [node name="Bat" parent="Foreground" instance=ExtResource("8_63f2j")]
-position = Vector2(136, 86)
+position = Vector2(176, 176)
 
 [node name="Bat2" parent="Foreground" instance=ExtResource("8_63f2j")]
-position = Vector2(96, 69)
+position = Vector2(80, 40)
 
 [node name="Bat3" parent="Foreground" instance=ExtResource("8_63f2j")]
-position = Vector2(200, 56)
+position = Vector2(208, 16)
 
 [node name="Bat4" parent="Foreground" instance=ExtResource("8_63f2j")]
-position = Vector2(232, 104)
+position = Vector2(288, 128)
 
 [node name="Bat5" parent="Foreground" instance=ExtResource("8_63f2j")]
-position = Vector2(136, 136)
+position = Vector2(112, 176)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(20, 80)
+position = Vector2(8, 88)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
@@ -160,3 +161,6 @@ offset_bottom = 11.0
 texture = ExtResource("10_kbl0j")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="Node2D" parent="." instance=ExtResource("12_3fylq")]
+position = Vector2(144, 80)
