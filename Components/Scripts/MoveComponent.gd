@@ -6,18 +6,18 @@ extends Node
 #     TargetVector of Vector2
 #     TargetNode   of Node2D
 class TargetVector:
-    var target : Vector2
+    var vector : Vector2
     func _init(target:Vector2):
-        self.target = target
+        vector = target
     func match(vecCB,nodeCB):
-        return vecCB.call(target)
+        return vecCB.call(vector)
 
 class TargetNode:
-    var target : Node2D
+    var node : Node2D
     func _init(target:Node2D):
-        self.target = target
+        node = target
     func match(vecCB,nodeCB):
-        return nodeCB.call(target)
+        return nodeCB.call(node)
 #--- End of Discrimination Union ---#
 
 # Enables the MoveComponent. If disabled the whole Component will do nothing
@@ -55,6 +55,13 @@ func _physics_process(delta):
                     func(vector): return move.global_position.direction_to(vector).normalized() * speed,
                     func(node):   return move.global_position.direction_to(node.global_position).normalized() * speed
                 )
+                
+                # Instead of target.match(...) we also could use:
+#                if target is TargetVector:
+#                    move.velocity = move.global_position.direction_to(target.vector).normalized() * speed
+#                elif target is TargetNode:
+#                    move.velocity = move.global_position.direction_to(target.node.global_position).normalized() * speed
+                
                 move.move_and_slide()
             State.Knockback:
                 move.velocity = knockback
