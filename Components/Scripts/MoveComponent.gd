@@ -22,11 +22,10 @@ class TargetNode:
 
 # Enables the MoveComponent. If disabled the whole Component will do nothing
 # indepent on whatever method is called.
-@export var isEnabled  : bool    = true
+@export var isEnabled  : bool = true
 
 # Global Position the character tries to move to
-#var targetPosition     : Vector2 = Vector2(0,0)
-var target = null
+var target = TargetVector.new(Vector2(0,0))
 
 # The object that should be moved
 @export var move       : CharacterBody2D
