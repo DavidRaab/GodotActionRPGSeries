@@ -78,7 +78,6 @@ _max_health = 3
 move = NodePath("..")
 speed = 30.0
 friction = 50.0
-knockback_friction = 400.0
 
 [node name="PhysicCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4dhlu")

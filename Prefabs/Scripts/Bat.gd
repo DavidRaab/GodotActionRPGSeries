@@ -15,7 +15,8 @@ var current_state = State.Idle
 
 # Chase variable
 var chase_body : Node2D = null
-@export var knockback_speed : float = 200.0
+@export var knockback_speed    : float = 200.0
+@export var knockback_duration : float = 0.2
 
 # Attack state
 var in_attack_range            = false
@@ -75,5 +76,6 @@ func _physics_process(delta):
 # When Bat Hitbox collide with an Attack
 func _on_hitbox_area_entered(area):
     if area is AreaDamage:
-        move.set_knockback(area.global_position.direction_to(collision.global_position).normalized() * knockback_speed)
+        var force = area.global_position.direction_to(collision.global_position).normalized() * knockback_speed
+        move.set_knockback(force,knockback_duration)
         self.health.subtract_health(area.damage)
