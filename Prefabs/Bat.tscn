@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1cxan1x0bgah"]
+[gd_scene load_steps=18 format=3 uid="uid://d1cxan1x0bgah"]
 
 [ext_resource type="Texture2D" uid="uid://b22ektsjvot2y" path="res://Enemies/Bat.png" id="1_qlvrl"]
 [ext_resource type="Script" path="res://Prefabs/Scripts/Bat.gd" id="1_w45mr"]
 [ext_resource type="Texture2D" uid="uid://cn6e862lcrdkf" path="res://Shadows/SmallShadow.png" id="2_qy0j8"]
+[ext_resource type="PackedScene" uid="uid://dbequaqvcsh2l" path="res://Components/MoveComponent.tscn" id="3_30bi2"]
 [ext_resource type="PackedScene" uid="uid://fuqi2a1j12ma" path="res://Components/health_component.tscn" id="4_6q3r3"]
 [ext_resource type="Script" path="res://Scripts/PlayerDetection.gd" id="5_8ijr1"]
 [ext_resource type="Script" path="res://Scripts/AreaDamage.gd" id="6_xy8b2"]
@@ -67,11 +68,17 @@ radius = 5.0
 collision_layer = 32
 collision_mask = 49
 script = ExtResource("1_w45mr")
-chase_speed = 30
+knockback_speed = 150.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_6q3r3")]
 _health = 3
 _max_health = 3
+
+[node name="MoveComponent" parent="." node_paths=PackedStringArray("move") instance=ExtResource("3_30bi2")]
+move = NodePath("..")
+speed = 30.0
+friction = 50.0
+knockback_friction = 400.0
 
 [node name="PhysicCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4dhlu")

@@ -113,7 +113,7 @@ position = Vector2(96, 112)
 position = Vector2(176, 176)
 
 [node name="Bat2" parent="Foreground" instance=ExtResource("8_63f2j")]
-position = Vector2(80, 40)
+position = Vector2(88, 80)
 
 [node name="Bat3" parent="Foreground" instance=ExtResource("8_63f2j")]
 position = Vector2(208, 16)

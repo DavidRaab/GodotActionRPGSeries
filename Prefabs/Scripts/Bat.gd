@@ -5,6 +5,7 @@ var deathEffect        :PackedScene      = preload("res://Prefabs/bat_death_effe
 var hitEffect          :PackedScene      = preload("res://Prefabs/HitEffect.tscn")
 @onready var collision :CollisionShape2D = $Hitbox/CollisionShape2D
 @onready var health    :HealthComponent  = $HealthComponent
+@onready var move      :MoveComponent    = $MoveComponent
 @onready var detection :PlayerDetection  = $PlayerDetection
 @onready var playerAttackArea            = $PlayerAttackArea
 
@@ -13,12 +14,8 @@ enum State { Idle, Wander, Chase, Attack }
 var current_state = State.Idle
 
 # Chase variable
-@export var chase_speed : int    = 100
-var chase_body          : Node2D = null
-
-var knockback               : Vector2 = Vector2.ZERO
-@export var knockback_speed : float   = 200.0
-@export var friction        : float   = 800.0
+var chase_body : Node2D = null
+@export var knockback_speed : float = 200.0
 
 # Attack state
 var in_attack_range            = false
@@ -60,17 +57,11 @@ func _physics_process(delta):
     # Process current State
     match current_state:
         State.Idle:
-            self.velocity  = self.velocity.move_toward(Vector2.ZERO, friction * delta)
-            self.knockback = self.velocity + knockback
-            self.knockback = self.knockback.move_toward(Vector2.ZERO, friction * delta)
-            move_and_slide()
+            move.stop_movement()
         State.Wander:
             pass
         State.Chase:
-            var direction  = self.global_position.direction_to(self.chase_body.global_position).normalized()
-            self.velocity  = direction * chase_speed + knockback
-            self.knockback = self.knockback.move_toward(Vector2.ZERO, friction * delta)
-            move_and_slide()
+            move.move_to(self.chase_body.global_position)
         State.Attack:
             # Try to do damage on player
             if self.chase_body.take_damage(self.attack_damage):
@@ -84,9 +75,5 @@ func _physics_process(delta):
 # When Bat Hitbox collide with an Attack
 func _on_hitbox_area_entered(area):
     if area is AreaDamage:
-        # compute attack direction for knockback
-        if self.knockback == Vector2.ZERO:
-            var direction = (collision.global_position - area.global_position).normalized()
-            self.knockback = direction * knockback_speed
-        # Apply Damage
+        move.set_knockback(area.global_position.direction_to(collision.global_position).normalized() * knockback_speed)
         self.health.subtract_health(area.damage)
