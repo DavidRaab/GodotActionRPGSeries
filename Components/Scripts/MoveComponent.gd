@@ -1,11 +1,33 @@
 class_name MoveComponent
 extends Node
 
+#--- Emulation of Discriminated Union - F# code would be ---#
+# type Target =
+#     TargetVector of Vector2
+#     TargetNode   of Node2D
+class TargetVector:
+    var target : Vector2
+    func _init(target:Vector2):
+        self.target = target
+    func match(vecCB,nodeCB):
+        return vecCB.call(target)
+
+class TargetNode:
+    var target : Node2D
+    func _init(target:Node2D):
+        self.target = target
+    func match(vecCB,nodeCB):
+        return nodeCB.call(target)
+#--- End of Discrimination Union ---#
+
 # Enables the MoveComponent. If disabled the whole Component will do nothing
 # indepent on whatever method is called.
 @export var isEnabled  : bool    = true
+
 # Global Position the character tries to move to
-var targetPosition     : Vector2 = Vector2(0,0)
+#var targetPosition     : Vector2 = Vector2(0,0)
+var target = null
+
 # The object that should be moved
 @export var move       : CharacterBody2D
 @export var speed      : float   = 10.0
@@ -29,7 +51,10 @@ func _physics_process(delta):
                 move.velocity = move.velocity.move_toward(Vector2.ZERO, friction * delta)
                 move.move_and_slide()
             State.Move:
-                move.velocity = move.global_position.direction_to(targetPosition).normalized() * speed
+                move.velocity = target.match(
+                    func(vector): return move.global_position.direction_to(vector).normalized() * speed,
+                    func(node):   return move.global_position.direction_to(node.global_position).normalized() * speed
+                )
                 move.move_and_slide()
             State.Knockback:
                 move.velocity = knockback
@@ -58,7 +83,17 @@ func stop_movement():
             state_after_knockback = State.Stop
 
 func move_to(target:Vector2):
-    self.targetPosition = target
+    self.target = TargetVector.new(target)
+    match current_state:
+        State.Stop:
+            current_state = State.Move
+        State.Move:
+            pass
+        State.Knockback:
+            state_after_knockback = State.Move
+
+func follow_node(target:Node2D):
+    self.target = TargetNode.new(target)
     match current_state:
         State.Stop:
             current_state = State.Move
